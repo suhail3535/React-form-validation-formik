@@ -1,16 +1,16 @@
 // src/components/RetreatItem.js
 import React from 'react';
 
-const RetreatItemCard = ({retreat}) => {
+const RetreatItemCard = ({item}) => {
   return (
     <div  className="hover:bg-slate-100 cursor-pointer rounded overflow-hidden shadow-lg m-4">
-      <img className="w-[100%] h-48 m-auto" src={retreat.image} alt={retreat.title} />
+      <img className="w-[100%] h-48 m-auto" src={item.image} alt={item.title} />
       <div className="px-6 py-4">
-        <div className="font-bold text-xl mb-2">{retreat.title}</div>
-        <p className="text-gray-700 text-base">{retreat.description}</p>
-        <p className="text-gray-700">Date: {retreat.date}</p>
-        <p className="text-gray-700">Location: {retreat.location}</p>
-        <p className="text-gray-700">Price: ${retreat.price}</p>
+        <div className="font-bold text-xl mb-2">{item.title}</div>
+        <p className="text-gray-700 text-base">{item.description}</p>
+        <p className="text-gray-700">Date: {item.date}</p>
+        <p className="text-gray-700">Location: {item.location}</p>
+        <p className="text-gray-700">Price: ${item.price}</p>
       </div>
     </div>
   );
