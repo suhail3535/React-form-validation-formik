@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import RetreatItem from "./RetreatItemCard";
 import RetreatItemCard from "./RetreatItemCard";
+import Loading from "./LoadingIndicator";
 
 const RetreatList = () => {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -14,6 +16,7 @@ const RetreatList = () => {
 
         const data = await response.json();
         setProducts(data);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -28,16 +31,18 @@ const RetreatList = () => {
         <div className="flex flex-col sm:flex-row">
           <select className=" cursor-pointer bg-indigo-900 rounded-sm m-4 text-white px-5 py-2">
             <option value="date">Sort by Date</option>
-            {products.map((product) => (
+            <option value="as">As</option>
+            <option value="ds">Ds</option>
+
+            {/* {products.map((product) => (
          <option value="type">{product.date}</option>
-        ))}
+        ))} */}
           </select>
           <select className=" cursor-pointer bg-indigo-900 rounded-sm m-4 text-white px-5 py-2">
             <option value="date">Filter by type</option>
             {products.map((product) => (
-         <option value="type">{product.type}</option>
-        ))}
-            
+              <option value="type">{product.type}</option>
+            ))}
           </select>
         </div>
 
@@ -49,12 +54,15 @@ const RetreatList = () => {
           />
         </div>
       </div>
-      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ">
-        {/* Displaying products */}
-        {products.map((product) => (
-          <RetreatItemCard key={product.id} item={product} />
-        ))}
-      </div>
+      {loading ? (
+        <Loading />
+      ) : (
+        <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ">
+          {products.map((product) => (
+            <RetreatItemCard key={product.id} item={product} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
