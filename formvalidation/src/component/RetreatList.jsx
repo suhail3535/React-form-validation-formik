@@ -107,6 +107,7 @@ import React, { useState, useEffect } from "react";
 import RetreatItemCard from "./RetreatItemCard";
 import Loading from "./LoadingIndicator";
 import Pagination from "./Pagination";
+import Shimmer from "./Shimmer";
 
 const RetreatList = () => {
   const [products, setProducts] = useState([]);
@@ -226,7 +227,7 @@ const RetreatList = () => {
       </div>
 
       {loading ? (
-        <Loading />
+        <Shimmer />
       ) : (
         <>
           <div className="p-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
